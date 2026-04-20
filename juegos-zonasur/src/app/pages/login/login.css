@@ -1,0 +1,13 @@
+.container-login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 10px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}

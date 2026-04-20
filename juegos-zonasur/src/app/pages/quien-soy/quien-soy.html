@@ -1,19 +1,28 @@
-<h1>Quién Soy</h1>
+<div class="layout">
 
-<div *ngIf="usuario$ | async as usuario">
+  <!-- IZQUIERDA -->
+  <div class="izquierda">
+    <h1>Quién Soy</h1>
 
-  <h2>{{ usuario.login }}</h2>
+    <p>Hola, soy Tobías Perea.</p>
+    <p>Estoy desarrollando una sala de juegos como TP.</p>
+  </div>
 
-  <img [src]="usuario.avatar_url" width="150">
+  <!-- CENTRO (perfil) -->
+  <div class="centro" *ngIf="usuario$ | async as usuario">
 
-  <p>{{ usuario.bio || 'Sin biografía' }}</p>
+    <h2>{{ usuario.login }}</h2>
 
-  <p>Repos: {{ usuario.public_repos }}</p>
+    <img [src]="usuario.avatar_url">
 
-  <button (click)="irAGithub(usuario.html_url)">
-    Ver GitHub
-  </button>
+    <p>{{ usuario.bio || 'Sin biografía' }}</p>
+
+    <p>Repos: {{ usuario.public_repos }}</p>
+
+    <button (click)="irAGithub(usuario.html_url)">
+      Ver GitHub
+    </button>
+
+  </div>
 
 </div>
-
-<p *ngIf="!(usuario$ | async)">Cargando perfil...</p>

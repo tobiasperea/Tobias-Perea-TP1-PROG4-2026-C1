@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './quien-soy.html',
+  styleUrls: ['./quien-soy.css']
 })
 export class QuienSoy {
 

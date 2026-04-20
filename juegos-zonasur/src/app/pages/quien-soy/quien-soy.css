@@ -1,0 +1,38 @@
+.layout {
+  position: relative;
+  height: calc(100vh - 60px);
+}
+
+/* IZQUIERDA (centro vertical, pegado a la izquierda) */
+.izquierda {
+  position: absolute;
+  top: 20%; 
+  left: 80px;
+  transform: translateY(-50%);
+}
+.izquierda h1 {
+  font-size: 48px; 
+  margin-bottom: 15px;
+}
+.izquierda p {
+  font-size: 20px;
+}
+
+/* CENTRO (perfil) */
+.centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 300px;
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.centro img {
+  width: 120px;
+  border-radius: 50%;
+}

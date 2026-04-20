@@ -1,0 +1,9 @@
+.container-registro {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 10px;
+}
