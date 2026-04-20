@@ -1,0 +1,19 @@
+<h1>Quién Soy</h1>
+
+<div *ngIf="usuario$ | async as usuario">
+
+  <h2>{{ usuario.login }}</h2>
+
+  <img [src]="usuario.avatar_url" width="150">
+
+  <p>{{ usuario.bio || 'Sin biografía' }}</p>
+
+  <p>Repos: {{ usuario.public_repos }}</p>
+
+  <button (click)="irAGithub(usuario.html_url)">
+    Ver GitHub
+  </button>
+
+</div>
+
+<p *ngIf="!(usuario$ | async)">Cargando perfil...</p>
