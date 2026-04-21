@@ -1,7 +1,14 @@
-body {
-  background-color: #0a0a0a;
-  color: #c8f0c8;
-  font-family: 'Courier New', monospace; /* o dejás la que tenés */
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url('/sarandi_verde.png');
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 70%;
+  opacity: 0.08;
+  z-index: -1;
+  pointer-events: none;
 }
 
 h1, h2 {
@@ -58,7 +65,7 @@ button.outline {
 body {
   background-color: var(--fondo);
   color: var(--verde-texto);
-  font-family: 'Courier New', monospace;
+  font-family: 'Rajdhani', sans-serif;
   min-height: 100vh;
 }
 
