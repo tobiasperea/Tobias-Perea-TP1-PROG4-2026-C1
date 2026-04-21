@@ -6,7 +6,27 @@
 
     <p>Hola, soy Tobías Perea.</p>
     <p>Estoy desarrollando una sala de juegos como TP.</p>
+    <div class="juego-propio">
+      <h2>Mi juego: Simon Dice</h2>
+      <p>
+        Simon Dice es un juego de memoria y reflejos. La máquina muestra una secuencia 
+        de colores que se va haciendo más larga con cada ronda. El jugador tiene que 
+        repetir la secuencia en el mismo orden clickeando los botones de colores.
+      </p>
+      <p>
+        ¿Cómo se juega?
+      </p>
+      <ul>
+        <li>La máquina ilumina una secuencia de colores</li>
+        <li>Repetís la secuencia clickeando los botones en el mismo orden</li>
+        <li>Cada ronda se agrega un color nuevo</li>
+        <li>Si te equivocás, perdés</li>
+        <li>Si llegás a la ronda 10, ganás</li>
+      </ul>
+    </div>
   </div>
+
+  
 
   <!-- CENTRO (perfil) -->
   <div class="centro" *ngIf="usuario$ | async as usuario">

@@ -55,3 +55,23 @@
 .centro button {
   margin-top: 4px;
 }
+.juego-propio {
+  margin-top: 32px;
+  border-top: 0.5px solid var(--verde-mid);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.juego-propio ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.juego-propio ul li::before {
+  content: '▶ ';
+  color: var(--verde);
+}
