@@ -1,38 +1,57 @@
 .layout {
-  position: relative;
-  height: calc(100vh - 60px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 48px;
+  padding: 60px 80px;
+  min-height: 100vh;
 }
 
-/* IZQUIERDA (centro vertical, pegado a la izquierda) */
 .izquierda {
-  position: absolute;
-  top: 20%; 
-  left: 80px;
-  transform: translateY(-50%);
+  flex: 1;
+  max-width: 400px;
 }
+
 .izquierda h1 {
-  font-size: 48px; 
-  margin-bottom: 15px;
+  font-size: 48px;
+  margin-bottom: 16px;
 }
+
 .izquierda p {
-  font-size: 20px;
+  font-size: 16px;
+  color: var(--verde-apagado);
+  line-height: 1.7;
 }
 
-/* CENTRO (perfil) */
 .centro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   width: 300px;
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--fondo-card);
+  padding: 24px 20px;
+  border-radius: var(--border-radius);
+  border: 0.5px solid var(--verde-mid);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .centro img {
-  width: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
+  border: 2px solid var(--verde);
+  margin: 0 auto;
+}
+
+.centro h2 {
+  font-size: 1.2rem;
+}
+
+.centro p {
+  font-size: 13px;
+  color: var(--verde-apagado);
+}
+
+.centro button {
+  margin-top: 4px;
 }

@@ -1,9 +1,22 @@
+.center-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .container-registro {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  gap: 10px;
-  padding: 20px;
-  background: #1a1a1a;
-  border-radius: 10px;
+  width: 320px;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--fondo-card);
+  border-radius: var(--border-radius);
+  border: 0.5px solid var(--verde-mid);
+}
+
+.container-registro h1 {
+  text-align: center;
+  margin-bottom: 4px;
 }

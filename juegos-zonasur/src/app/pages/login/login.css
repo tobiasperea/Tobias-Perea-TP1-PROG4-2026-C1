@@ -1,13 +1,30 @@
+.center-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .container-login {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  gap: 10px;
-  padding: 20px;
-  background: #1a1a1a;
-  border-radius: 10px;
+  width: 320px;
+  gap: 12px;
+  padding: 28px 24px;
+  background: var(--fondo-card);
+  border-radius: var(--border-radius);
+  border: 0.5px solid var(--verde-mid);
 }
-html, body {
-  height: 100%;
-  margin: 0;
+
+.container-login h1 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.container-login .subtitulo {
+  text-align: center;
+  font-size: 12px;
+  color: var(--verde-apagado);
+  font-style: italic;
+  margin-bottom: 8px;
 }
