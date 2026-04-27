@@ -1,30 +1,48 @@
 <div class="home-wrapper">
+
   <div class="home-header">
     <h1>☠ Zona Sur</h1>
-    <button class="outline logout-btn" (click)="logout()">Cerrar sesión</button>
-  </div>
-  <p class="home-sub">Cuidado donde pisas</p>
 
-  <div class="games-grid">
-    <div class="game-card">
+    <div *ngIf="usuarioLogueado; else noLogueado">
+      <span class="usuario-nombre">{{ usuarioLogueado.email }}</span>
+      <button class="outline logout-btn" (click)="logout()">Cerrar sesión</button>
+    </div>
+
+    <ng-template #noLogueado>
+      <div class="auth-btns">
+        <button class="outline" (click)="irA('/login')">Iniciar sesión</button>
+        <button (click)="irA('/registro')">Registrarse</button>
+      </div>
+    </ng-template>
+  </div>
+
+  <p class="home-sub">La plataforma más picante del conurbano</p>
+
+  <div class="games-grid" *ngIf="usuarioLogueado">
+    <div class="game-card" (click)="irA('/ahorcado')">
       <span class="icon">🪓</span>
       <span class="nombre">Ahorcado</span>
       <span class="desc">Adiviná la palabra antes de que sea tarde</span>
     </div>
-    <div class="game-card">
+    <div class="game-card" (click)="irA('/mayor-menor')">
       <span class="icon">🃏</span>
       <span class="nombre">Mayor o Menor</span>
       <span class="desc">¿La próxima carta es más alta o más baja?</span>
     </div>
-    <div class="game-card">
+    <div class="game-card" (click)="irA('/preguntados')">
       <span class="icon">🧠</span>
       <span class="nombre">Preguntados</span>
       <span class="desc">A ver cuánto sabés</span>
     </div>
-    <div class="game-card">
+    <div class="game-card" (click)="irA('/simon-dice')">
       <span class="icon">🎮</span>
-      <span class="nombre">Juego Propio</span>
-      <span class="desc">Coming soon...</span>
+      <span class="nombre">Simon Dice</span>
+      <span class="desc">Repetí la secuencia de colores</span>
     </div>
   </div>
+
+  <div class="no-logueado-msg" *ngIf="!usuarioLogueado">
+    <p>Tenés que loguearte para jugar 👇</p>
+  </div>
+
 </div>

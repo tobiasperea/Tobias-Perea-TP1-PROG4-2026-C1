@@ -1,39 +1,50 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { SupabaseService } from '../../services/supabase.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,  CommonModule],
   templateUrl: './registro.html',
 })
 export class Registro {
 
-  usuario = '';
+  email = '';
   password = '';
+  nombre = '';
+  apellido = '';
+  edad: number | null = null;
+  errorMsg = '';
+  cargando = false;
 
-  constructor(private router: Router) {}
+  constructor(private supabase: SupabaseService, private router: Router) {}
 
-  registrar() {
-
-    if (!this.usuario || !this.password) {
-      alert('Completá todos los campos');
+  async registrar() {
+    if (!this.email || !this.password || !this.nombre || !this.apellido || !this.edad) {
+      this.errorMsg = 'Completá todos los campos';
       return;
     }
 
-    if (this.password.length < 4) {
-      alert('La contraseña debe tener al menos 4 caracteres');
-      return;
+    this.cargando = true;
+    this.errorMsg = '';
+
+    try {
+      await this.supabase.registrar(this.email, this.password, {
+        nombre: this.nombre,
+        apellido: this.apellido,
+        edad: this.edad
+      });
+      this.router.navigate(['/home']);
+    } catch (error: any) {
+      if (error.message.includes('already registered')) {
+        this.errorMsg = 'Este correo ya está registrado';
+      } else {
+        this.errorMsg = 'Error al registrarse, intentá de nuevo';
+      }
+    } finally {
+      this.cargando = false;
     }
-
-    const user = {
-      usuario: this.usuario,
-      password: this.password
-    };
-
-    localStorage.setItem('usuario', JSON.stringify(user));
-
-    this.router.navigate(['/login']);
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Github } from '../../services/github';
+import { Github } from '../../services/github.service';
 import { Observable } from 'rxjs';
 
 @Component({

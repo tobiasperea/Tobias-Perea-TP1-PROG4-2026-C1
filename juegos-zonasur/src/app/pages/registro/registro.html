@@ -1,15 +1,19 @@
 <div class="center-page">
-
   <div class="container-registro">
 
     <h1>Registro</h1>
-    <p class="subtitulo">Te estas por subir al trucho</p>
 
-    <input [(ngModel)]="usuario" placeholder="Usuario">
-    <input [(ngModel)]="password" type="password" placeholder="Password">
+    <input [(ngModel)]="nombre" placeholder="Nombre">
+    <input [(ngModel)]="apellido" placeholder="Apellido">
+    <input [(ngModel)]="edad" type="number" placeholder="Edad">
+    <input [(ngModel)]="email" type="email" placeholder="Correo">
+    <input [(ngModel)]="password" type="password" placeholder="Contraseña">
 
-    <button (click)="registrar()">Registrarse</button>
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <button (click)="registrar()" [disabled]="cargando">
+      {{ cargando ? 'Registrando...' : 'Registrarse' }}
+    </button>
 
   </div>
-
 </div>

@@ -1,40 +1,52 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
 })
 export class Login {
 
-  usuario = '';
+  email = '';
   password = '';
+  errorMsg = '';
+  cargando = false;
 
-  constructor(private router: Router) {}
+  // Usuarios de prueba para los 3 botones rápidos
+  usuariosPrueba = [
+    { email: 'prueba1@gmail.com', password: 'prueba123' },
+    { email: 'prueba2@gmail.com', password: 'prueba123' },
+    { email: 'prueba3@gmail.com', password: 'prueba123' },
+  ];
 
-  ingresar() {
+  constructor(private supabase: SupabaseService, private router: Router) {}
 
-    if (!this.usuario || !this.password) {
-      alert('Completá todos los campos');
+  async ingresar() {
+    if (!this.email || !this.password) {
+      this.errorMsg = 'Completá todos los campos';
       return;
     }
 
-    const data = localStorage.getItem('usuario');
+    this.cargando = true;
+    this.errorMsg = '';
 
-    if (!data) {
-      alert('No hay usuario registrado');
-      return;
-    }
-
-    const user = JSON.parse(data);
-
-    if (this.usuario === user.usuario && this.password === user.password) {
+    try {
+      await this.supabase.login(this.email, this.password);
       this.router.navigate(['/home']);
-    } else {
-      this.router.navigate(['/error']);
+    } catch (error: any) {
+      this.errorMsg = 'Correo o contraseña incorrectos';
+    } finally {
+      this.cargando = false;
     }
+  }
+
+  loginRapido(usuario: any) {
+    this.email = usuario.email;
+    this.password = usuario.password;
   }
 }

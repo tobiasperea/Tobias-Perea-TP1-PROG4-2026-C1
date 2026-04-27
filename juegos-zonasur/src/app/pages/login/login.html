@@ -1,15 +1,25 @@
 <div class="center-page">
-
   <div class="container-login">
 
-    <h1>Zona Sur</h1>
+    <h1>☠ Zona Sur</h1>
     <p class="subtitulo">Si no sos del palo, no entrás</p>
 
-    <input [(ngModel)]="usuario" placeholder="Usuario">
-    <input [(ngModel)]="password" type="password" placeholder="Password">
+    <input [(ngModel)]="email" type="email" placeholder="Correo">
+    <input [(ngModel)]="password" type="password" placeholder="Contraseña">
 
-    <button (click)="ingresar()">Ingresar</button>
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <button (click)="ingresar()" [disabled]="cargando">
+      {{ cargando ? 'Ingresando...' : 'Entrar al barrio' }}
+    </button>
+
+    <div class="separador">— acceso rápido —</div>
+
+    <div class="botones-rapidos">
+      <button class="outline" (click)="loginRapido(usuariosPrueba[0])">Prueba 1</button>
+      <button class="outline" (click)="loginRapido(usuariosPrueba[1])">Prueba 2</button>
+      <button class="outline" (click)="loginRapido(usuariosPrueba[2])">Prueba 3</button>
+    </div>
 
   </div>
-
 </div>

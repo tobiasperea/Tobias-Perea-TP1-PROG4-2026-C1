@@ -28,3 +28,35 @@
   font-style: italic;
   margin-bottom: 8px;
 }
+
+.subtitulo {
+  text-align: center;
+  font-size: 13px;
+  color: var(--verde-apagado);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.error {
+  color: #ff4444;
+  font-size: 13px;
+  text-align: center;
+}
+
+.separador {
+  text-align: center;
+  font-size: 12px;
+  color: var(--verde-apagado);
+  margin: 4px 0;
+}
+
+.botones-rapidos {
+  display: flex;
+  gap: 8px;
+}
+
+.botones-rapidos button {
+  flex: 1;
+  padding: 8px;
+  font-size: 12px;
+}
