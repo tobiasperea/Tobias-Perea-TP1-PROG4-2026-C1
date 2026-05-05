@@ -14,13 +14,13 @@
   flex-direction: column;
 }
 
-/* 🔥 ocupa TODO el espacio */
+
 .mensajes {
   flex: 1;
   overflow-y: auto;
 }
 
-/* 🔥 mensajes */
+
 .mensaje {
   background: #222;
   margin: 5px 0;
@@ -28,7 +28,7 @@
   border-radius: 6px;
 }
 
-/* 🔥 mensajes propios */
+
 .mio {
   background: #4caf50;
   text-align: right;
@@ -39,30 +39,29 @@
   width: 100%;
 }
 
-/* 🔥 el input ocupa TODO */
 input {
   flex: 1;
   background: #222;
   border: 1px solid #4caf50;
   color: white;
   padding: 10px;
-  border-radius: 6px 0 0 6px; /* pegado al botón */
+  border-radius: 6px 0 0 6px; 
   outline: none;
 }
 
 /* 🔥 botón chico */
 button {
-  width: 40px; /* 👈 clave */
+  width: 40px; 
   background: #4caf50;
   border: none;
-  border-radius: 0 6px 6px 0; /* pegado al input */
+  border-radius: 0 6px 6px 0; 
   cursor: pointer;
 }
 .chat-boton {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #4caf50; /* 👈 verde */
+  background: #4caf50; 
   width: 50px;
   height: 50px;
   border-radius: 50%;
