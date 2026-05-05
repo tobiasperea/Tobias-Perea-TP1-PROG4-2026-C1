@@ -1,0 +1,45 @@
+<div class="mm-wrapper">
+
+  <div class="header">
+    <h1>🃏 Mayor o Menor</h1>
+    <span class="puntaje">Aciertos: {{ cartasAcertadas }}/{{ maxAciertos }}</span>
+    <button class="outline volver-btn" (click)="volverAlHome()">← Volver</button>
+  </div>
+
+  <div class="juego" *ngIf="!partidaTerminada">
+
+    <div class="cartas">
+      <div class="carta">
+        <span class="carta-numero">{{ cartaActual?.numero }}</span>
+        <span class="carta-palo">{{ cartaActual?.palo }}</span>
+      </div>
+
+      <div class="carta siguiente" *ngIf="cartaSiguiente">
+        <span class="carta-numero">{{ cartaSiguiente?.numero }}</span>
+        <span class="carta-palo">{{ cartaSiguiente?.palo }}</span>
+      </div>
+      <div class="carta siguiente oculta" *ngIf="!cartaSiguiente">
+        <span class="carta-numero">?</span>
+      </div>
+    </div>
+
+    <div class="resultado-msg" *ngIf="resultado">{{ resultado }}</div>
+
+    <div class="botones">
+      <button (click)="elegir('menor')">⬇ Menor</button>
+      <button (click)="elegir('mayor')">⬆ Mayor</button>
+    </div>
+
+  </div>
+
+  <div class="resultado" *ngIf="partidaTerminada">
+    <h2 *ngIf="gano">🎉 ¡Ganaste!</h2>
+    <h2 *ngIf="!gano">💀 Perdiste</h2>
+    <p>Cartas acertadas: {{ cartasAcertadas }}</p>
+    <div class="resultado-btns">
+      <button (click)="reiniciar()">Jugar de nuevo</button>
+      <button class="outline" (click)="volverAlHome()">Volver al Home</button>
+    </div>
+  </div>
+
+</div>

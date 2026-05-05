@@ -1,0 +1,49 @@
+<div class="ahorcado-wrapper">
+
+  <div class="header">
+    <h1>🪓 Ahorcado</h1>
+    <span class="timer">⏱ {{ tiempoSegundos }}s</span>
+    <button class="outline volver-btn" (click)="volverAlHome()">← Volver</button>
+  </div>
+
+  <div class="juego" *ngIf="!partidaTerminada">
+
+    <div class="errores">
+      <span *ngFor="let i of [1,2,3,4,5,6]" 
+            [class.activo]="errores >= i">💀</span>
+      <span class="errores-texto">{{ errores }}/{{ maxErrores }}</span>
+    </div>
+
+    <div class="palabra">{{ palabraMostrada }}</div>
+
+    <div class="letras-erradas" *ngIf="letrasErradas.length > 0">
+      <span>Letras erradas: </span>
+      <span class="letra-errada" *ngFor="let l of letrasErradas">{{ l }}</span>
+    </div>
+
+    <div class="abecedario">
+      <button 
+        *ngFor="let letra of abecedario"
+        (click)="elegirLetra(letra)"
+        [disabled]="letrasAdivinadas.includes(letra) || letrasErradas.includes(letra)"
+        [class.acertada]="letrasAdivinadas.includes(letra)"
+        [class.errada]="letrasErradas.includes(letra)">
+        {{ letra }}
+      </button>
+    </div>
+
+  </div>
+
+  <div class="resultado" *ngIf="partidaTerminada">
+    <h2 *ngIf="gano">🎉 ¡Ganaste!</h2>
+    <h2 *ngIf="!gano">💀 Perdiste</h2>
+    <p>La palabra era: <strong>{{ palabra }}</strong></p>
+    <p>Tiempo: {{ tiempoSegundos }} segundos</p>
+    <p>Letras usadas: {{ letrasAdivinadas.length + letrasErradas.length }}</p>
+    <div class="resultado-btns">
+      <button (click)="reiniciar()">Jugar de nuevo</button>
+      <button class="outline" (click)="volverAlHome()">Volver al Home</button>
+    </div>
+  </div>
+
+</div>

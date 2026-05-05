@@ -1,0 +1,105 @@
+.mm-wrapper {
+  padding: 32px 48px;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.header h1 { flex: 1; }
+
+.puntaje {
+  color: var(--verde-apagado);
+  font-size: 16px;
+}
+
+.volver-btn {
+  width: auto;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.cartas {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.carta {
+  width: 120px;
+  height: 180px;
+  background: var(--fondo-card);
+  border: 2px solid var(--verde-mid);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carta.siguiente {
+  border-color: var(--verde);
+}
+
+.carta.oculta {
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.carta-numero {
+  font-size: 48px;
+  color: var(--verde);
+  font-weight: bold;
+}
+
+.carta-palo {
+  font-size: 28px;
+}
+
+.resultado-msg {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+  min-height: 28px;
+}
+
+.botones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.botones button {
+  width: 160px;
+  font-size: 16px;
+}
+
+.resultado {
+  text-align: center;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.resultado h2 { font-size: 2rem; }
+
+.resultado p { color: var(--verde-apagado); }
+
+.resultado-btns {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.resultado-btns button {
+  width: auto;
+  padding: 10px 24px;
+}

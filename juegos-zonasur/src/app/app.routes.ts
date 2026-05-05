@@ -4,6 +4,8 @@ import { Registro } from './pages/registro/registro';
 import { Home } from './pages/home/home';
 import { QuienSoy } from './pages/quien-soy/quien-soy';
 import { Error } from './pages/error/error';
+import { Ahorcado } from './pages/ahorcado/ahorcado';
+import { MayorMenor } from './pages/mayor-menor/mayor-menor';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -11,5 +13,8 @@ export const routes: Routes = [
     { path: 'registro', component: Registro },
     { path: 'home', component: Home },
     { path: 'quien-soy', component: QuienSoy },
+    { path: 'ahorcado', component: Ahorcado},
+    { path: 'mayor-menor', component: MayorMenor },
     { path: '**', component: Error }
+    
 ];

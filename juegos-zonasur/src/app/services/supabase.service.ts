@@ -58,4 +58,8 @@ export class SupabaseService {
       callback(session);
     });
   }
+  async guardarPartida(tabla: string, datos: any) {
+    const { error } = await this.supabase.from(tabla).insert(datos);
+    if (error) throw error;
+  }
 }
