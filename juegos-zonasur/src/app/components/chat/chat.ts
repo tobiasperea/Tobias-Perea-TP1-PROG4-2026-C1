@@ -36,8 +36,8 @@ export class Chat implements OnInit {
     const { data } = await this.chatService.supabase.auth.getUser();
     this.usuario = data.user?.email || 'anonimo';
 
-    this.chatService.escucharMensajes((msg: any) => {
-      this.mensajes.push(msg);
+    this.chatService.escucharMensajes(async () => {
+      this.mensajes = await this.chatService.traerMensajes();
     });
   }
 
