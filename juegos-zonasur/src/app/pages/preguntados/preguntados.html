@@ -1,0 +1,49 @@
+<div class="preg-wrapper">
+
+  <div class="header">
+    <h1>🧠 Preguntados</h1>
+    <span class="puntaje">{{ acertadas }}/{{ preguntas.length }}</span>
+    <button class="outline volver-btn" (click)="volverAlHome()">← Volver</button>
+  </div>
+
+  <div class="cargando" *ngIf="cargando">
+    <p>Cargando preguntas...</p>
+  </div>
+
+  <div class="juego" *ngIf="!cargando && !partidaTerminada">
+
+    <div class="progreso">
+      Pregunta {{ indicePregunta + 1 }} de {{ preguntas.length }}
+    </div>
+
+    <div class="pregunta">
+      {{ decodear(preguntaActual?.question) }}
+    </div>
+
+    <div class="categoria">{{ preguntaActual?.category }}</div>
+
+    <div class="opciones">
+      <button
+        *ngFor="let opcion of opciones"
+        (click)="elegir(opcion)"
+        [disabled]="respondio"
+        [class.correcta]="respondio && opcion === preguntaActual.correct_answer"
+        [class.errada]="respondio && opcion === opcionElegida && opcion !== preguntaActual.correct_answer">
+        {{ decodear(opcion) }}
+      </button>
+    </div>
+
+  </div>
+
+  <div class="resultado" *ngIf="partidaTerminada">
+    <h2 *ngIf="acertadas >= 7">🎉 ¡Muy bien!</h2>
+    <h2 *ngIf="acertadas >= 4 && acertadas < 7">😐 Más o menos</h2>
+    <h2 *ngIf="acertadas < 4">💀 Malísimo</h2>
+    <p>Acertaste {{ acertadas }} de {{ preguntas.length }}</p>
+    <div class="resultado-btns">
+      <button (click)="reiniciar()">Jugar de nuevo</button>
+      <button class="outline" (click)="volverAlHome()">Volver al Home</button>
+    </div>
+  </div>
+
+</div>

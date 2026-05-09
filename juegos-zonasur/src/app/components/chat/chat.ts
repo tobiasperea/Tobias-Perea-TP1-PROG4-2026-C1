@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChatService } from '../../services/chat.service';
 import { FormsModule } from '@angular/forms';
-import { ViewChild, ElementRef } from '@angular/core';
-
+import { ChatService } from '../../services/chat.service';
+import { SupabaseService } from '../../services/supabase.service';
 
 @Component({
   selector: 'app-chat',
@@ -16,54 +15,63 @@ export class Chat implements OnInit {
 
   mostrar = false;
   mensajes: any[] = [];
-  nuevoMensaje: string = '';
-  usuario: string = 'test@mail.com'; 
+  nuevoMensaje = '';
+  usuario = '';
 
-  constructor(private chatService: ChatService) {}
   @ViewChild('contenedorMensajes') contenedor!: ElementRef;
 
-  scrollAbajo() {
-    setTimeout(() => {
-      this.contenedor.nativeElement.scrollTop =
-        this.contenedor.nativeElement.scrollHeight;
-    }, 0);
-  }
+  constructor(
+    private chatService: ChatService,
+    private supabaseService: SupabaseService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   async ngOnInit() {
+    const user = await this.supabaseService.getUsuario();
+    this.usuario = user?.email || 'anonimo';
+
     this.mensajes = await this.chatService.traerMensajes();
+    this.scrollAbajo();
 
-  
-    const { data } = await this.chatService.supabase.auth.getUser();
-    this.usuario = data.user?.email || 'anonimo';
+    
+    this.supabaseService.onAuthChange(async (session) => {
+      if (session) {
+        this.usuario = session.user.email || 'anonimo';
+      } else {
+        this.usuario = '';
+        this.mostrar = false;
+        this.cdr.detectChanges();
+      }
+    });
 
-    this.chatService.escucharMensajes(async () => {
-      this.mensajes = await this.chatService.traerMensajes();
+    this.chatService.escucharMensajes((mensajeNuevo: any) => {
+      const existe = this.mensajes.find(m => m.id === mensajeNuevo.id);
+      if (!existe) {
+        this.mensajes.push(mensajeNuevo);
+        this.cdr.detectChanges();
+        this.scrollAbajo();
+      }
     });
   }
 
-  toggle() {
-    console.log('click');
-    this.mostrar = !this.mostrar;
+  scrollAbajo() {
+    setTimeout(() => {
+      if (this.contenedor?.nativeElement) {
+        this.contenedor.nativeElement.scrollTop =
+          this.contenedor.nativeElement.scrollHeight;
+      }
+    }, 50);
   }
+
+  toggle() {
+    this.mostrar = !this.mostrar;
+    if (this.mostrar) this.scrollAbajo();
+  }
+
   async enviar() {
     if (!this.nuevoMensaje.trim()) return;
-
-    const { data } = await this.chatService.supabase.auth.getUser();
-    const usuario = data.user?.email || 'anonimo';
-
-    const mensaje = {
-      usuario_email: usuario,
-      mensaje: this.nuevoMensaje,
-      fecha: new Date()
-    };
-
-    this.mensajes.push(mensaje);
-
-    await this.chatService.enviarMensaje(
-      usuario,
-      this.nuevoMensaje
-    );
-
+    const texto = this.nuevoMensaje;
     this.nuevoMensaje = '';
+    await this.chatService.enviarMensaje(this.usuario, texto);
   }
 }

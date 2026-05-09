@@ -1,52 +1,44 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseService } from './supabase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  supabase: SupabaseClient;
+  constructor(private supabase: SupabaseService) {}
 
-  constructor() {
-    this.supabase = createClient(
-      'https://wbhjeonlskiibgbxypfi.supabase.co',
-      'sb_publishable_KJR3mLiM9JsHoYOMdMNLGg_UiW9eCpn'
-    );
-  }
   async enviarMensaje(usuario_email: string, mensaje: string) {
-    await this.supabase.from('chat').insert([
-      {
-        usuario_email,
-        mensaje,
-        fecha: new Date()
-      }
-    ]);
+    await this.supabase['supabase'].from('chat').insert([{
+      usuario_email,
+      mensaje,
+      fecha: new Date()
+    }]);
   }
 
   async traerMensajes() {
-    const { data, error } = await this.supabase
+    const { data, error } = await this.supabase['supabase']
       .from('chat')
       .select('*')
       .order('fecha', { ascending: true });
 
-    if (error) {
-      console.error(error);
-      return [];
-    }
-
+    if (error) return [];
     return data;
   }
+
   escucharMensajes(callback: any) {
-    this.supabase
-      .channel('chat')
+    this.supabase['supabase']
+      .channel('chat-global-' + Date.now())
       .on(
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'chat' },
         (payload) => {
+          console.log('mensaje recibido:', payload.new);
           callback(payload.new);
         }
       )
-      .subscribe();
+      .subscribe((status: any) => {
+        console.log('estado del canal:', status);
+      });
   }
 }

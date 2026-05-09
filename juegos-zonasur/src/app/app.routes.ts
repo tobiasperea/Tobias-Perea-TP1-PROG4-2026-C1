@@ -6,6 +6,9 @@ import { QuienSoy } from './pages/quien-soy/quien-soy';
 import { Error } from './pages/error/error';
 import { Ahorcado } from './pages/ahorcado/ahorcado';
 import { MayorMenor } from './pages/mayor-menor/mayor-menor';
+import { Preguntados } from './pages/preguntados/preguntados';
+import { SimonDice } from './pages/simon-dice/simon-dice';
+import { Resultados } from './pages/resultados/resultados';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +18,9 @@ export const routes: Routes = [
     { path: 'quien-soy', component: QuienSoy },
     { path: 'ahorcado', component: Ahorcado},
     { path: 'mayor-menor', component: MayorMenor },
+    { path: 'preguntados', component: Preguntados },
+    { path: 'simon-dice', component: SimonDice },
+    { path: 'resultados', component: Resultados },
     { path: '**', component: Error }
     
 ];
