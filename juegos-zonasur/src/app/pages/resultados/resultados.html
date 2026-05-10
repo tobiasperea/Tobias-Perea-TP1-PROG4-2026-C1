@@ -1,1 +1,127 @@
-<p>resultados works!</p>
+<div class="resultados-wrapper">
+
+  <div class="header">
+    <h1>🏆 Resultados</h1>
+    <button class="outline volver-btn" (click)="volverAlHome()">← Volver</button>
+  </div>
+
+  <div class="cargando" *ngIf="cargando">
+    <p>Cargando resultados...</p>
+  </div>
+
+  <div class="tablas" *ngIf="!cargando">
+
+    <!-- AHORCADO -->
+    <div class="tabla-container">
+      <h2>🪓 Ahorcado</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Palabra</th>
+            <th>Letras usadas</th>
+            <th>Tiempo</th>
+            <th>Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of ahorcado; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ p.usuario_email }}</td>
+            <td>{{ p.palabra }}</td>
+            <td>{{ p.letras_seleccionadas }}</td>
+            <td>{{ p.tiempo_segundos }}s</td>
+            <td>{{ p.gano ? '✅' : '❌' }}</td>
+          </tr>
+          <tr *ngIf="ahorcado.length === 0">
+            <td colspan="6">Sin partidas aún</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAYOR O MENOR -->
+    <div class="tabla-container">
+      <h2>🃏 Mayor o Menor</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Cartas acertadas</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of mayorMenor; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ p.usuario_email }}</td>
+            <td>{{ p.cartas_acertadas }}</td>
+            <td>{{ p.fecha | date:'dd/MM/yy HH:mm' }}</td>
+          </tr>
+          <tr *ngIf="mayorMenor.length === 0">
+            <td colspan="4">Sin partidas aún</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PREGUNTADOS -->
+    <div class="tabla-container">
+      <h2>🧠 Preguntados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Acertadas</th>
+            <th>Total</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of preguntados; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ p.usuario_email }}</td>
+            <td>{{ p.preguntas_acertadas }}</td>
+            <td>{{ p.total_preguntas }}</td>
+            <td>{{ p.fecha | date:'dd/MM/yy HH:mm' }}</td>
+          </tr>
+          <tr *ngIf="preguntados.length === 0">
+            <td colspan="5">Sin partidas aún</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SIMON DICE -->
+    <div class="tabla-container">
+      <h2>🎮 Simon Dice</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Ronda máxima</th>
+            <th>Resultado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of simonDice; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ p.usuario_email }}</td>
+            <td>{{ p.ronda_maxima }}</td>
+            <td>{{ p.gano ? '✅' : '❌' }}</td>
+            <td>{{ p.fecha | date:'dd/MM/yy HH:mm' }}</td>
+          </tr>
+          <tr *ngIf="simonDice.length === 0">
+            <td colspan="5">Sin partidas aún</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

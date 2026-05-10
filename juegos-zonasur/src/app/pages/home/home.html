@@ -41,6 +41,11 @@
       <span class="desc">Repetí la secuencia de colores</span>
     </div>
   </div>
+  <div class="resultados-btn" *ngIf="usuarioLogueado">
+    <button class="outline" (click)="irA('/resultados')">🏆 Ver Resultados</button>
+  </div>
+
+
 
   <div class="no-logueado-msg" *ngIf="!usuarioLogueado">
     <p>Tenés que loguearte para jugar 👇</p>

@@ -62,4 +62,14 @@ export class SupabaseService {
     const { error } = await this.supabase.from(tabla).insert(datos);
     if (error) throw error;
   }
+
+  async getResultados(tabla: string, ordenarPor: string, ascendente: boolean) {
+    const { data, error } = await this.supabase
+      .from(tabla)
+      .select('*')
+      .order(ordenarPor, { ascending: ascendente });
+
+    if (error) return [];
+    return data;
+  }
 }

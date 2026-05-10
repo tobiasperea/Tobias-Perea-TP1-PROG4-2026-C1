@@ -1,1 +1,37 @@
-<p>simon-dice works!</p>
+<div class="simon-wrapper">
+
+  <div class="header">
+    <h1>🎮 Simon Dice</h1>
+    <span class="ronda">Ronda {{ ronda }}/{{ maxRondas }}</span>
+    <button class="outline volver-btn" (click)="volverAlHome()">← Volver</button>
+  </div>
+
+  <div class="juego" *ngIf="!partidaTerminada">
+
+    <p class="instruccion" *ngIf="!esperandoJugador">Mirá la secuencia...</p>
+    <p class="instruccion" *ngIf="esperandoJugador">¡Tu turno! Repetí la secuencia</p>
+    <p class="correcto" *ngIf="mensaje">{{ mensaje }}</p>
+
+    <div class="grilla">
+      <div
+        *ngFor="let color of colores"
+        class="boton-color"
+        [class]="'boton-color ' + color"
+        [class.activo]="colorActivo === color"
+        (click)="elegirColor(color)">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="resultado" *ngIf="partidaTerminada">
+    <h2 *ngIf="gano">🎉 ¡Ganaste!</h2>
+    <h2 *ngIf="!gano">💀 Perdiste en ronda {{ ronda }}</h2>
+    <p>Ronda máxima: {{ ronda }}</p>
+    <div class="resultado-btns">
+      <button (click)="reiniciar()">Jugar de nuevo</button>
+      <button class="outline" (click)="volverAlHome()">Volver al Home</button>
+    </div>
+  </div>
+
+</div>

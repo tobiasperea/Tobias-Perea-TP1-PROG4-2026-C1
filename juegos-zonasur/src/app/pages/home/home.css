@@ -87,3 +87,13 @@
   color: var(--verde-apagado);
   font-size: 16px;
 }
+.resultados-btn {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.resultados-btn button {
+  width: auto;
+  padding: 10px 24px;
+}
