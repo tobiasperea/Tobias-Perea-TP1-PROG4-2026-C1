@@ -1,26 +1,77 @@
 import { Routes } from '@angular/router';
-import { Login } from './pages/login/login';
-import { Registro } from './pages/registro/registro';
-import { Home } from './pages/home/home';
-import { QuienSoy } from './pages/quien-soy/quien-soy';
-import { Error } from './pages/error/error';
-import { Ahorcado } from './pages/ahorcado/ahorcado';
-import { MayorMenor } from './pages/mayor-menor/mayor-menor';
-import { Preguntados } from './pages/preguntados/preguntados';
-import { SimonDice } from './pages/simon-dice/simon-dice';
-import { Resultados } from './pages/resultados/resultados';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'login', component: Login },
-    { path: 'registro', component: Registro },
-    { path: 'home', component: Home },
-    { path: 'quien-soy', component: QuienSoy },
-    { path: 'ahorcado', component: Ahorcado},
-    { path: 'mayor-menor', component: MayorMenor },
-    { path: 'preguntados', component: Preguntados },
-    { path: 'simon-dice', component: SimonDice },
-    { path: 'resultados', component: Resultados },
-    { path: '**', component: Error }
-    
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login')
+        .then(m => m.Login)
+  },
+
+  {
+    path: 'registro',
+    loadComponent: () =>
+      import('./pages/registro/registro')
+        .then(m => m.Registro)
+  },
+
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home')
+        .then(m => m.Home)
+  },
+
+  {
+    path: 'quien-soy',
+    loadComponent: () =>
+      import('./pages/quien-soy/quien-soy')
+        .then(m => m.QuienSoy)
+  },
+
+  {
+    path: 'ahorcado',
+    loadComponent: () =>
+      import('./pages/ahorcado/ahorcado')
+        .then(m => m.Ahorcado)
+  },
+
+  {
+    path: 'mayor-menor',
+    loadComponent: () =>
+      import('./pages/mayor-menor/mayor-menor')
+        .then(m => m.MayorMenor)
+  },
+
+  {
+    path: 'preguntados',
+    loadComponent: () =>
+      import('./pages/preguntados/preguntados')
+        .then(m => m.Preguntados)
+  },
+
+  {
+    path: 'simon-dice',
+    loadComponent: () =>
+      import('./pages/simon-dice/simon-dice')
+        .then(m => m.SimonDice)
+  },
+
+  {
+    path: 'resultados',
+    loadComponent: () =>
+      import('./pages/resultados/resultados')
+        .then(m => m.Resultados)
+  },
+
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/error/error')
+        .then(m => m.Error)
+  }
+
 ];
