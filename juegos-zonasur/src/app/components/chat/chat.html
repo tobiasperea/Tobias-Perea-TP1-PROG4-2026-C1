@@ -6,10 +6,7 @@
 
   <!-- MENSAJES -->
   <div class="mensajes">
-    <div 
-      *ngFor="let msg of mensajes"
-      [class.mio]="msg.usuario_email === usuario"
-      class="mensaje">
+    <div *ngFor="let msg of mensajes" [class.mio]="msg.usuario_email === usuario" class="mensaje">
 
       <b>{{ msg.usuario_email }}</b>
       <p>{{ msg.mensaje }}</p>
@@ -19,7 +16,11 @@
   </div>
 
   <!-- INPUT ABAJO -->
-  <div class="input">
+  <div class="no-logueado" *ngIf="!usuario">
+    <p>Logueate para chatear 🔒</p>
+  </div>
+
+  <div class="input" *ngIf="usuario">
     <input [(ngModel)]="nuevoMensaje" placeholder="Escribí un mensaje">
     <button (click)="enviar()">➤</button>
   </div>

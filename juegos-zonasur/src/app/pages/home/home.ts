@@ -13,6 +13,8 @@ import { SupabaseService } from '../../services/supabase.service';
 export class Home implements OnInit {
 
   usuarioLogueado: any = null;
+  cargando = true;
+
 
   constructor(
     private supabase: SupabaseService, 
@@ -22,7 +24,9 @@ export class Home implements OnInit {
 
   async ngOnInit() {
     this.usuarioLogueado = await this.supabase.getUsuario();
+    this.cargando = false;
     this.cdr.detectChanges();
+    
 
     this.supabase.onAuthChange((session) => {
       this.usuarioLogueado = session?.user ?? null;

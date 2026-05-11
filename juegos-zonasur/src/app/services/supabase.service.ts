@@ -72,4 +72,17 @@ export class SupabaseService {
     if (error) return [];
     return data;
   }
+
+  async getNombreUsuario(): Promise<string> {
+    const user = await this.getUsuario();
+    if (!user) return '';
+
+    const { data } = await this.supabase
+      .from('usuarios')
+      .select('nombre')
+      .eq('id', user.id)
+      .single();
+
+    return data?.nombre || user.email || '';
+  }
 }

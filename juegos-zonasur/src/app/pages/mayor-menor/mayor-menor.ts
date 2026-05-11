@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
+
 
 @Component({
   selector: 'app-mayor-menor',
@@ -22,7 +23,7 @@ export class MayorMenor implements OnInit {
   resultado = '';
   maxAciertos = 10;
 
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  constructor(private supabase: SupabaseService, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.generarMazo();
@@ -52,35 +53,49 @@ export class MayorMenor implements OnInit {
   async elegir(eleccion: 'mayor' | 'menor') {
     if (this.partidaTerminada || this.cartaSiguiente) return;
 
-    this.cartaSiguiente = this.mazo[this.mazo.length - 1];
-    const esMayor = this.cartaSiguiente.numero > this.cartaActual.numero;
-    const esMenor = this.cartaSiguiente.numero < this.cartaActual.numero;
-    const esIgual = this.cartaSiguiente.numero === this.cartaActual.numero;
+    const siguiente = this.mazo[this.mazo.length - 1];
+    const esMayor = siguiente.numero > this.cartaActual.numero;
+    const esMenor = siguiente.numero < this.cartaActual.numero;
+    const esIgual = siguiente.numero === this.cartaActual.numero;
 
     let acerto = false;
     if (eleccion === 'mayor' && esMayor) acerto = true;
     if (eleccion === 'menor' && esMenor) acerto = true;
     if (esIgual) acerto = true;
 
+
+    this.cartaSiguiente = siguiente;
+
     if (acerto) {
       this.cartasAcertadas++;
       this.resultado = '✅ ¡Correcto!';
+
       if (this.cartasAcertadas >= this.maxAciertos) {
-        setTimeout(() => this.terminarPartida(true), 1000);
+        setTimeout(() => this.terminarPartida(true), 800);
         return;
       }
+
+
+      setTimeout(() => {
+        this.cartaActual = this.mazo.pop()!;
+        this.cartaSiguiente = null;
+        this.resultado = '';
+      }, 800);
+
     } else {
       this.resultado = '❌ Incorrecto';
-      setTimeout(() => this.terminarPartida(false), 1000);
-      return;
+      setTimeout(() => {
+        this.cartaSiguiente = null;
+        this.terminarPartida(false);
+      }, 800);
     }
-
-    setTimeout(() => this.siguienteCarta(), 1000);
   }
 
   async terminarPartida(gano: boolean) {
     this.gano = gano;
     this.partidaTerminada = true;
+    this.cartaSiguiente = null;
+    this.cdr.detectChanges();
 
     const usuario = await this.supabase.getUsuario();
     await this.supabase.guardarPartida('partidas_mayor_menor', {
