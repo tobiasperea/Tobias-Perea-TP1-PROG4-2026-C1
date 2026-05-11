@@ -25,3 +25,20 @@
   font-size: 13px;
   text-align: center;
 }
+input.invalido {
+  border-color: #ff4444;
+}
+
+input.valido {
+  border-color: var(--verde);
+}
+input {
+  border: 2px solid transparent;
+  transition: 0.2s;
+}
+
+.error {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 5px;
+}

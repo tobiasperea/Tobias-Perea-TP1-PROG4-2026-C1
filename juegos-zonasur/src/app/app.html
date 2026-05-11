@@ -1,7 +1,8 @@
 <nav>
   <button routerLink="/home">Home</button>
-  <button routerLink="/login">Login</button>
-  <button routerLink="/registro">Registro</button>
+  <button routerLink="/login" *ngIf="!usuarioLogueado">Login</button>
+  <button routerLink="/registro" *ngIf="!usuarioLogueado">Registro</button>
+  <button routerLink="/resultados" *ngIf="usuarioLogueado">Resultados</button>
   <button routerLink="/quien-soy">Quién Soy</button>
 </nav>
 

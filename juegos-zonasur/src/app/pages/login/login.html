@@ -4,10 +4,25 @@
     <h1>☠ Zona Sur</h1>
     <p class="subtitulo">Si no sos del palo, no entrás</p>
 
-    <input [(ngModel)]="email" type="email" placeholder="Correo">
-    <input [(ngModel)]="password" type="password" placeholder="Contraseña">
+    <input 
+      [(ngModel)]="email"
+      type="email"
+      placeholder="Correo"
+      [class.invalido]="errorMsg"
+      [class.valido]="email && !errorMsg"
+    >
 
-    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <input 
+      [(ngModel)]="password"
+      type="password"
+      placeholder="Contraseña"
+      [class.invalido]="errorMsg"
+      [class.valido]="password && !errorMsg"
+    >
+
+    <p class="error" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </p>
 
     <button (click)="ingresar()" [disabled]="cargando">
       {{ cargando ? 'Ingresando...' : 'Entrar al barrio' }}
@@ -16,9 +31,17 @@
     <div class="separador">— acceso rápido —</div>
 
     <div class="botones-rapidos">
-      <button class="outline" (click)="loginRapido(usuariosPrueba[0])">Prueba 1</button>
-      <button class="outline" (click)="loginRapido(usuariosPrueba[1])">Prueba 2</button>
-      <button class="outline" (click)="loginRapido(usuariosPrueba[2])">Prueba 3</button>
+      <button class="outline" (click)="loginRapido(usuariosPrueba[0])">
+        Prueba 1
+      </button>
+
+      <button class="outline" (click)="loginRapido(usuariosPrueba[1])">
+        Prueba 2
+      </button>
+
+      <button class="outline" (click)="loginRapido(usuariosPrueba[2])">
+        Prueba 3
+      </button>
     </div>
 
   </div>

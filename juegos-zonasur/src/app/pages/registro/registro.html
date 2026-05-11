@@ -3,13 +3,47 @@
 
     <h1>Registro</h1>
 
-    <input [(ngModel)]="nombre" placeholder="Nombre">
-    <input [(ngModel)]="apellido" placeholder="Apellido">
-    <input [(ngModel)]="edad" type="number" placeholder="Edad">
-    <input [(ngModel)]="email" type="email" placeholder="Correo">
-    <input [(ngModel)]="password" type="password" placeholder="Contraseña">
+    <input 
+      [(ngModel)]="nombre"
+      placeholder="Nombre"
+      [class.invalido]="errorMsg"
+      [class.valido]="nombre && !errorMsg"
+    >
 
-    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <input 
+      [(ngModel)]="apellido"
+      placeholder="Apellido"
+      [class.invalido]="errorMsg"
+      [class.valido]="apellido && !errorMsg"
+    >
+
+    <input 
+      [(ngModel)]="edad"
+      type="number"
+      placeholder="Edad"
+      [class.invalido]="errorMsg"
+      [class.valido]="edad && !errorMsg"
+    >
+
+    <input 
+      [(ngModel)]="email"
+      type="email"
+      placeholder="Correo"
+      [class.invalido]="errorMsg"
+      [class.valido]="email && !errorMsg"
+    >
+
+    <input 
+      [(ngModel)]="password"
+      type="password"
+      placeholder="Contraseña"
+      [class.invalido]="errorMsg"
+      [class.valido]="password && !errorMsg"
+    >
+
+    <p class="error" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </p>
 
     <button (click)="registrar()" [disabled]="cargando">
       {{ cargando ? 'Registrando...' : 'Registrarse' }}
