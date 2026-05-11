@@ -7,5 +7,7 @@
   <span *ngIf="usuarioLogueado" class="nav-usuario">{{ nombreUsuario }}</span>
 </nav>
 
-<router-outlet></router-outlet>
+<main [@routeAnimations]="getRouteAnimation(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
 <app-chat></app-chat>

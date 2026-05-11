@@ -3,13 +3,15 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Chat } from './components/chat/chat';
 import { SupabaseService } from './services/supabase.service';
+import { routeAnimations } from './animations';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, CommonModule, Chat],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  animations: [routeAnimations]
 })
 export class App implements OnInit {
 
@@ -20,9 +22,6 @@ export class App implements OnInit {
     private supabase: SupabaseService,
     private cdr: ChangeDetectorRef
   ) { }
-
-
-
 
   async ngOnInit() {
     this.usuarioLogueado = await this.supabase.getUsuario();
@@ -40,5 +39,9 @@ export class App implements OnInit {
       }
       this.cdr.detectChanges();
     });
+  }
+
+  getRouteAnimation(outlet: RouterOutlet) {
+    return outlet.isActivated ? outlet.activatedRoute?.snapshot.url[0]?.path : '';
   }
 }
