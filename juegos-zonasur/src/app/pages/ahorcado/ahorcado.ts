@@ -12,7 +12,8 @@ import { SupabaseService } from '../../services/supabase.service';
 })
 export class Ahorcado implements OnInit, OnDestroy {
 
-  palabras = ['angular', 'supabase', 'typescript', 'programacion', 'zonasur', 'conurbano', 'sarandí', 'avellaneda'];
+  palabras = ['angular', 'supabase', 'typescript', 'programacion', 'zonasur', 'conurbano', 'sarandí', 'avellaneda','quilmes', 'lanus', 'lomas', 'banfield', 'temperley',
+  'escalada', 'pompeya', 'dock', 'wilde', 'bernal', 'berazategui'];
   palabra = '';
   letrasAdivinadas: string[] = [];
   letrasErradas: string[] = [];
