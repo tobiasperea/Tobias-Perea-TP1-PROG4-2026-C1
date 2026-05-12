@@ -3,17 +3,12 @@
   <div class="home-header">
     <h1>☠ Zona Sur</h1>
 
-    <div *ngIf="usuarioLogueado; else noLogueado">
+    <div *ngIf="usuarioLogueado">
       <span class="usuario-nombre">{{ usuarioLogueado.email }}</span>
       <button class="outline logout-btn" (click)="logout()">Cerrar sesión</button>
     </div>
 
-    <ng-template #noLogueado>
-      <div class="auth-btns">
-        <button class="outline" (click)="irA('/login')">Iniciar sesión</button>
-        <button (click)="irA('/registro')">Registrarse</button>
-      </div>
-    </ng-template>
+    
   </div>
 
   <p class="home-sub">La plataforma más picante del conurbano</p>

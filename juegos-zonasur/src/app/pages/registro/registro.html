@@ -8,14 +8,14 @@
     <input [(ngModel)]="apellido" placeholder="Apellido" [class.invalido]="errorMsg"
       [class.valido]="apellido && !errorMsg">
 
-    <input [(ngModel)]="edad" type="number" placeholder="Edad" [class.invalido]="errorMsg"
+    <input [(ngModel)]="edad" type="number" placeholder="Edad (1-99)" [class.invalido]="errorMsg"
       [class.valido]="edad && !errorMsg">
 
     <input [(ngModel)]="email" type="email" placeholder="Correo" [class.invalido]="errorMsg"
       [class.valido]="email && !errorMsg">
 
-    <input [(ngModel)]="password" type="password" placeholder="Contraseña" [class.invalido]="errorMsg"
-      [class.valido]="password && !errorMsg">
+    <input [(ngModel)]="password" type="password" placeholder="Contraseña(mín. 6 caracteres)"
+      [class.invalido]="errorMsg" [class.valido]="password && !errorMsg">
 
     <app-modal *ngIf="errorMsg" [mensaje]="errorMsg" (cerrar)="errorMsg = ''">
     </app-modal>
