@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
@@ -60,11 +60,14 @@ export class Ahorcado implements OnInit, OnDestroy {
   partidaTerminada = false;
   gano = false;
 
-  constructor(private supabase: SupabaseService, private router: Router) { }
+  constructor(private supabase: SupabaseService, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.palabra = this.palabras[Math.floor(Math.random() * this.palabras.length)];
-    this.intervalo = setInterval(() => this.tiempoSegundos++, 1000);
+    this.intervalo = setInterval(() => {
+      this.tiempoSegundos++;
+      this.cdr.detectChanges();
+    }, 1000);
   }
 
   ngOnDestroy() {
