@@ -22,7 +22,7 @@ export class Resultados implements OnInit {
     private supabase: SupabaseService,
     private router: Router,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
   async ngOnInit() {
     const [a, m, p, s] = await Promise.all([
@@ -32,7 +32,16 @@ export class Resultados implements OnInit {
       this.supabase.getResultados('partidas_simon_dice', 'ronda_maxima', false)
     ]);
 
-    this.ahorcado = a;
+    this.ahorcado = a.sort((x: any, y: any) => {
+
+
+      if (x.gano && !y.gano) return -1;
+      if (!x.gano && y.gano) return 1;
+
+
+      return x.tiempo_segundos - y.tiempo_segundos;
+
+    });
     this.mayorMenor = m;
     this.preguntados = p;
     this.simonDice = s;
