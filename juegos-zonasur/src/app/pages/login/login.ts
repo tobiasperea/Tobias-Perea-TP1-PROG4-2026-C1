@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '../../services/supabase.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { Modal } from '../../components/modal/modal';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, Modal],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../services/supabase.service';
 import { CommonModule } from '@angular/common';
+import { Modal } from '../../components/modal/modal';
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, Modal],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
