@@ -12,8 +12,44 @@ import { SupabaseService } from '../../services/supabase.service';
 })
 export class Ahorcado implements OnInit, OnDestroy {
 
-  palabras = ['angular', 'supabase', 'typescript', 'programacion', 'zonasur', 'conurbano', 'sarandí', 'avellaneda','quilmes', 'lanus', 'lomas', 'banfield', 'temperley',
-  'escalada', 'pompeya', 'dock', 'wilde', 'bernal', 'berazategui'];
+  palabras = ['angular',
+    'supabase',
+    'typescript',
+    'programacion',
+    'zonasur',
+    'conurbano',
+
+    'guitarra',
+    'murcielago',
+    'computadora',
+    'teclado',
+    'pantalla',
+    'auriculares',
+    'internet',
+    'javascript',
+    'variable',
+    'algoritmo',
+    'desarrollo',
+    'tecnologia',
+
+    'montaña',
+    'aventura',
+    'camiseta',
+    'pelicula',
+    'biblioteca',
+    'universidad',
+    'escritorio',
+    'parlante',
+    'bicicleta',
+    'chocolate',
+
+    'quilmes',
+    'lanus',
+    'lomas',
+    'banfield',
+    'temperley',
+    'wilde',
+    'bernal'];
   palabra = '';
   letrasAdivinadas: string[] = [];
   letrasErradas: string[] = [];
@@ -24,7 +60,7 @@ export class Ahorcado implements OnInit, OnDestroy {
   partidaTerminada = false;
   gano = false;
 
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  constructor(private supabase: SupabaseService, private router: Router) { }
 
   ngOnInit() {
     this.palabra = this.palabras[Math.floor(Math.random() * this.palabras.length)];
